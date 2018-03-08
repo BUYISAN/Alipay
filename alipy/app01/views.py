@@ -10,10 +10,15 @@ def get_ali_object():
     app_id = "2016091100483079"
 
     # 支付完成后，支付偷偷向这里地址发送一个post请求
-    notify_url = "http://47.94.239.156:8009/page2/"
+    notify_url = "http://47.94.239.156/page2/"
 
     # 支付完成后，跳转的地址。
-    return_url = "http://47.94.239.156:8009/page2/"
+    return_url = "http://47.94.239.156/page2/"
+
+    # http://47.94.239.156/page2/?total_amount=12.00
+    # &timestamp=2018-03-06+12%3A22%3A53&
+    # sign=NOdwPRkmY1jpkYYpmyZUR4Y7sxuMaZe6nnbhrl%2Fh3USdCfqoQ1dMO7ED%2FTHnKoZ%2BIGbudlromV5yb6J71NeZ2Tteq8Gi3%2Fb%2FaZC2CnFWOQeo7WnO50DUmJi59Dbcn7ggc3XcPcwssMgEn%2FGb%2F6lGIBBp5pLBFd7tVpoOSQoHwwd0iS%2BHBGiS69CA6aL7WWeokw1Juy9PudvBN4Wc2hgcmMiJh%2Fd74Ii7aURV%2FyWsOTKPc223WqvrZQO587y8oAg1zt8AIoB670rxr7YsV8DZYoa8LiDn%2FRLIu7uMIqpW11OiDQLD%2FCutvGu2mojCNZMfQxw1swi6UbH6CEXox3fKFw%3D%3D&trade_no=2018030621001004780200663793&sign_type=RSA2
+    # &auth_app_id=2016091100483079&charset=utf-8&seller_id=2088102175075390&method=alipay.trade.page.pay.return&app_id=2016091100483079&out_trade_no=x21520310152.1253147&version=1.0
 
     merchant_private_key_path = "keys/app_private_2048.txt"
     alipay_public_key_path = "keys/alipay_public_2048.txt"
@@ -36,9 +41,7 @@ def index(request):
 def page1(request):
     # 根据当前用户的配置，生成URL，并跳转。
     money = float(request.POST.get('money'))
-
     alipay = get_ali_object()
-
     # 生成支付的url
     query_params = alipay.direct_pay(
         subject="充气式赵俊明",  # 商品简单描述

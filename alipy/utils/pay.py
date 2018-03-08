@@ -7,6 +7,7 @@ from urllib.parse import urlparse, parse_qs
 from base64 import decodebytes, encodebytes
 import json
 
+
 class AliPay(object):
     """
     支付宝支付接口(PC端支付接口)
